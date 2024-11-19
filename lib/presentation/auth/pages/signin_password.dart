@@ -9,6 +9,7 @@ import 'package:flutter_e_commerce/data/auth/model/user_sign_in.dart';
 import 'package:flutter_e_commerce/domain/auth/usecases/sign_in.dart';
 import 'package:flutter_e_commerce/presentation/auth/pages/forget_password.dart';
 import 'package:flutter_e_commerce/presentation/auth/widget/custom_input_text_field.dart';
+import 'package:flutter_e_commerce/presentation/homepage/pages/homepage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInPasswordView extends StatelessWidget {
@@ -31,8 +32,7 @@ class SignInPasswordView extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(snackbar);
               }
               if (state is ButtonSucces) {
-                var snackbar = const SnackBar(content: Text("succes"));
-                ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                AppNavigator.pushAndRemove(context, const HomePage());
               }
             },
             child: Column(
@@ -53,13 +53,12 @@ class SignInPasswordView extends StatelessWidget {
                 ),
                 Builder(builder: (context) {
                   return ReactiveButton(
-                      ontap: ()async {
+                      ontap: () async {
                         UserSignInRequest userSignInRequest = UserSignInRequest(
                             email: email, password: passwordController.text);
-                       await  context.read<ButtonCubit>().execute(
+                        await context.read<ButtonCubit>().execute(
                             useCase: SignInUseCase(),
                             params: userSignInRequest);
-                            
                       },
                       text: "Sign In");
                 }),

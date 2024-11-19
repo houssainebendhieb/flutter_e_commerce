@@ -2,6 +2,7 @@ import 'package:flutter_e_commerce/data/auth/repository/auth_repository_imp.dart
 import 'package:flutter_e_commerce/data/auth/source/auth_firebase.dart';
 import 'package:flutter_e_commerce/domain/auth/repository/auth_repo.dart';
 import 'package:flutter_e_commerce/domain/auth/usecases/get_ages.dart';
+import 'package:flutter_e_commerce/domain/auth/usecases/is_logged_in.dart';
 import 'package:flutter_e_commerce/domain/auth/usecases/send_forget_password.dart';
 import 'package:flutter_e_commerce/domain/auth/usecases/sign_in.dart';
 import 'package:flutter_e_commerce/domain/auth/usecases/signup.dart';
@@ -19,6 +20,7 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetAgesUseCase>(GetAgesUseCase());
 
   sl.registerSingleton<SignInUseCase>(SignInUseCase());
+  sl.registerSingleton<IsLoggedInUseCase>(IsLoggedInUseCase());
 
   sl.registerSingleton<SendForgetPasswordUseCase>(SendForgetPasswordUseCase());
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_e_commerce/common/cubit/button/cubit/button_cubit.dart';
+import 'package:flutter_e_commerce/common/widgets/helpers/app_navigator.dart';
+import 'package:flutter_e_commerce/presentation/homepage/pages/homepage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReactiveButton extends StatelessWidget {
@@ -19,6 +21,9 @@ class ReactiveButton extends StatelessWidget {
           return const Center(
             child: CircularProgressIndicator(),
           );
+        }
+        if (state is ButtonSucces) {
+          AppNavigator.push(context, HomePage());
         }
         return InkWell(
           onTap: ontap,

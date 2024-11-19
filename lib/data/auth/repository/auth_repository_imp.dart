@@ -25,4 +25,9 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<Either> sendForgetPassword(String email) {
     return sl<AuthFirebaseService>().sendForgetPassword(email);
   }
+
+  @override
+  Future<bool> IsLoggedIn() async {
+    return await sl<AuthFirebaseService>().isLoggedIn();
+  }
 }
