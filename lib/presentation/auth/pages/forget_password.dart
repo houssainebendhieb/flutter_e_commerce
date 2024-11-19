@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce/common/widgets/custom_button.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_e_commerce/common/cubit/button/cubit/button_cubit.dart';
+import 'package:flutter_e_commerce/common/widgets/reactive_button.dart';
 import 'package:flutter_e_commerce/core/configs/styles/text_styles.dart';
 import 'package:flutter_e_commerce/core/configs/theme/app_colors.dart';
+import 'package:flutter_e_commerce/domain/auth/usecases/send_forget_password.dart';
 import 'package:flutter_e_commerce/presentation/auth/widget/custom_input_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ForgotPassword extends StatelessWidget {
-  const ForgotPassword({super.key});
-
+  ForgotPassword({super.key});
+  final TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,11 +29,23 @@ class ForgotPassword extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            const custom_input_text_field(hintText: "Enter Email"),
+            custom_input_text_field(
+                hintText: "Enter Email", controller: emailController),
             SizedBox(
               height: 10.h,
             ),
-            CustomButton(ontap: () {}, text: "Continue"),
+            BlocProvider(
+              create: (context) => ButtonCubit(),
+              child: Builder(
+                builder: (context) => ReactiveButton(
+                    ontap: () {
+                      context.read<ButtonCubit>().execute(
+                          useCase: SendForgetPasswordUseCase(),
+                          params: emailController.text);
+                    },
+                    text: "Continue"),
+              ),
+            ),
             SizedBox(
               height: 15.h,
             ),

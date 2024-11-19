@@ -9,8 +9,8 @@ import 'package:flutter_e_commerce/presentation/auth/widget/custom_input_text_fi
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInView extends StatelessWidget {
-  const SignInView({super.key});
-
+  SignInView({super.key});
+  final TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +28,18 @@ class SignInView extends StatelessWidget {
             SizedBox(
               height: 20.h,
             ),
-            const custom_input_text_field(hintText: "Email Address"),
+            custom_input_text_field(
+                hintText: "Email Address", controller: emailController),
             SizedBox(
               height: 10.h,
             ),
             CustomButton(
                 ontap: () {
-                  AppNavigator.push(context, const SignInPasswordView());
+                  AppNavigator.push(
+                      context,
+                      SignInPasswordView(
+                        email: emailController.text,
+                      ));
                 },
                 text: "Continue"),
             SizedBox(
