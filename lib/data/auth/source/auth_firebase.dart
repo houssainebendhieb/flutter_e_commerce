@@ -93,7 +93,8 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
           .collection("users")
           .doc(user!.uid)
           .get();
-      return Right(userData);
+      print(userData.data());
+      return Right(userData.data());
     } catch (e) {
       return Left(e);
     }

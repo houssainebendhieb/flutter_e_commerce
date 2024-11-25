@@ -27,4 +27,5 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetUseUseCase>(GetUseUseCase());
 
   sl.registerSingleton<SendForgetPasswordUseCase>(SendForgetPasswordUseCase());
+
 }

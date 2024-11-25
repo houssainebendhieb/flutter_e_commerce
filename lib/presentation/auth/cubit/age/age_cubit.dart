@@ -10,7 +10,7 @@ part 'age_state.dart';
 class AgeCubit extends Cubit<AgeState> {
   AgeCubit() : super(AgeInitial());
   int value = 0;
-  
+
   void getAges() {
     try {
       emit(AgeLoading());
