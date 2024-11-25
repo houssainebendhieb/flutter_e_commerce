@@ -6,9 +6,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      appBar: AppBar(),
+      body: const Column(
         children: [
-          
+          Text("home page"),
         ],
       ),
     );
