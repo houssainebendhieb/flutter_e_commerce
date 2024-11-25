@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_e_commerce/common/cubit/category/category_cubit.dart';
+import 'package:flutter_e_commerce/common/cubit/product/product_cubit.dart';
+import 'package:flutter_e_commerce/presentation/homepage/widget/category.dart';
 import 'package:flutter_e_commerce/presentation/homepage/widget/custom_search_bar.dart';
 import 'package:flutter_e_commerce/presentation/homepage/widget/header.dart';
 
@@ -19,32 +21,39 @@ class HomePage extends StatelessWidget {
               height: 25,
             ),
             CustomSearchBar(),
+            SizedBox(
+              height: 20,
+            ),
+            Category(),
+            SizedBox(
+              height: 15,
+            ),
             BlocProvider(
-              create: (context) => CategoryCubit()..getCategories(),
-              child: BlocBuilder<CategoryCubit, CategoryState>(
+              create: (context) => ProductCubit()..getProducts(),
+              child: BlocBuilder<ProductCubit, ProductState>(
                 builder: (context, state) {
-                  if (state is CategorLoading) {
-                    return Center(
+                  if (state is ProductLoading) {
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
-                  } else if (state is CategorySucces) {
-                    return Container(
-                      height: 50,
-                      child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state.categoryList.length,
-                          itemBuilder: (context, index) {
-                            return Container(
-                              padding:const  EdgeInsets.all(10),
-                              width: 50,
-                              height: 50,
-                              child: Text(state.categoryList[index].title,
-                                  style: const TextStyle(color: Colors.red)),
-                            );
-                          }),
+                  } else if (state is ProductFailure) {
+                    return Center(
+                      child: Text(state.errorMessage),
                     );
+                  } else if (state is ProductSucces) {
+                    return Container(
+                        height: 250,
+                        child: ListView.builder(
+                            itemCount: state.list.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                height: 100,
+                                width: 75,
+                                child: Text(state.list[index].title),
+                              );
+                            }));
                   }
-                  return Container();
+                  return Text("not found 404");
                 },
               ),
             )

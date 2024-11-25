@@ -67,7 +67,6 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
   @override
   Future<Either> sendForgetPassword(String email) async {
     try {
-      print("hi");
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
       return const Right("Succes");
     } on FirebaseAuthException catch (e) {
@@ -93,7 +92,6 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
           .collection("users")
           .doc(user!.uid)
           .get();
-      print(userData.data());
       return Right(userData.data());
     } catch (e) {
       return Left(e);
