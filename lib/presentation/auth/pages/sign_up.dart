@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/common/widgets/custom_button.dart';
 import 'package:flutter_e_commerce/common/widgets/helpers/app_navigator.dart';

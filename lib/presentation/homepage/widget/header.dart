@@ -26,14 +26,25 @@ class header extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                state.userEntity.image.isEmpty?const Icon(Icons.circle,color:Colors.blue):Image.network(state.userEntity.image),
+                state.userEntity.image.isEmpty
+                    ? const Icon(Icons.circle, color: Colors.blue)
+                    : Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: ClipOval(
+                            child: Image.network(state.userEntity.image))),
                 Container(
                     width: 70,
                     height: 30,
                     decoration: BoxDecoration(
                         color: Colors.grey.shade800,
                         borderRadius: BorderRadius.circular(25)),
-                    child: Text(state.userEntity.)),
+                    child: state.userEntity.gender == 1
+                        ? const Text("MEN")
+                        : const Text("WOMEN")),
                 Container(
                     width: 40,
                     height: 40,
@@ -46,6 +57,7 @@ class header extends StatelessWidget {
               ],
             );
           }
+          return const Text("not found");
         },
       ),
     );

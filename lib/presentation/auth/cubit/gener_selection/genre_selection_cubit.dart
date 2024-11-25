@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 
 class GenreSelectionCubit extends Cubit<int> {
   GenreSelectionCubit() : super(0);
