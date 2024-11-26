@@ -10,7 +10,7 @@ class CategoryFirebaseImpl extends CategoryFirebase {
   Future<Either> getCategories() async {
     try {
       var res = await FirebaseFirestore.instance.collection("category").get();
-     
+      if (res.docs.isEmpty) const Left("No Product");
       return Right(res.docs);
     } catch (e) {
       return const Left("not found 404");

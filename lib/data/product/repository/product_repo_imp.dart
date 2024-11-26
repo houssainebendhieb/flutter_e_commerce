@@ -14,4 +14,11 @@ class ProductRepoImpl extends ProductRepo {
   Future<Either<String, List<ProductEntity>>> getNewsProducts() async {
     return await sl<ProductFirebaseService>().getNewsProduts();
   }
+
+  @override
+  Future<Either<String, List<ProductEntity>>> getProductsByCategoryName(
+      String categoryName) async {
+    return await sl<ProductFirebaseService>()
+        .getProductsByCategoryName(categoryName);
+  }
 }

@@ -49,5 +49,7 @@ Future<void> initializeDependencies() async {
 
   sl.registerSingleton<GetNewsProduct>(GetNewsProduct());
 
+  
+
   sl.registerSingleton<SendForgetPasswordUseCase>(SendForgetPasswordUseCase());
 }

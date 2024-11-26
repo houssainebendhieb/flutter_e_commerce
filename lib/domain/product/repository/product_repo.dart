@@ -5,4 +5,6 @@ abstract class ProductRepo {
   Future<Either<String, List<ProductEntity>>> getProducts();
 
   Future<Either<String, List<ProductEntity>>> getNewsProducts();
+
+  Future<Either<String, List<ProductEntity>>> getProductsByCategoryName(String categoryName);
 }

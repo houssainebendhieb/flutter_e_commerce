@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_e_commerce/common/cubit/product/product_cubit.dart';
-import 'package:flutter_e_commerce/presentation/homepage/widget/custom_product_top_selling.dart';
+import 'package:flutter_e_commerce/common/widgets/custom_product_top_selling.dart';
 
 class TopSellingProduct extends StatelessWidget {
   const TopSellingProduct({

@@ -15,7 +15,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
                   InkWell(
                     onTap: () {
-                      AppNavigator.push(context, AllCategories());
+                      AppNavigator.push(context, const AllCategories());
                     },
                     child: const Text("See All",
                         style: TextStyle(
