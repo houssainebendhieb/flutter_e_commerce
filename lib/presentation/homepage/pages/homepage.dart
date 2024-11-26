@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/common/widgets/helpers/app_navigator.dart';
+import 'package:flutter_e_commerce/presentation/all_categories/pages/all_categories.dart';
 import 'package:flutter_e_commerce/presentation/homepage/widget/category.dart';
 import 'package:flutter_e_commerce/presentation/homepage/widget/custom_search_bar.dart';
 import 'package:flutter_e_commerce/presentation/homepage/widget/header.dart';
@@ -10,40 +12,59 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              header(),
-              SizedBox(
+              const header(),
+              const SizedBox(
                 height: 25,
               ),
-              CustomSearchBar(),
-              SizedBox(
+              const CustomSearchBar(),
+              const SizedBox(
                 height: 20,
               ),
-              Category(),
-              SizedBox(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text("Categories",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                  InkWell(
+                    onTap: () {
+                      AppNavigator.push(context, AllCategories());
+                    },
+                    child: const Text("See All",
+                        style: TextStyle(
+                            fontWeight: FontWeight.normal, fontSize: 15)),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Category(),
+              const SizedBox(
                 height: 25,
               ),
-              Text("Top Selling",
+              const Text("Top Selling",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              TopSellingProduct(),
-              SizedBox(
+              const TopSellingProduct(),
+              const SizedBox(
                 height: 25,
               ),
-              Text("News",
+              const Text("News",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold)),
-              NewsProduct(),
+              const NewsProduct(),
             ],
           ),
         ),
