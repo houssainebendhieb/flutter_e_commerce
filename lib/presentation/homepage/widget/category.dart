@@ -25,7 +25,7 @@ class Category extends StatelessWidget {
                         width: 15,
                       )),
                   scrollDirection: Axis.horizontal,
-                  itemCount: state.categoryList.length,
+                  itemCount: 7,
                   itemBuilder: (context, index) {
                     return Column(
                       children: [
@@ -33,16 +33,18 @@ class Category extends StatelessWidget {
                           height: 60,
                           width: 60,
                           decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image:
+                                    NetworkImage(state.categoryList[0].image)),
                             shape: BoxShape.circle,
                             color: Colors.white,
                           ),
-                          child: Text(state.categoryList[index].title,
-                              style: const TextStyle(color: Colors.red)),
                         ),
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(state.categoryList[index].title,
+                        Text(state.categoryList[0].title,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 14))
                       ],

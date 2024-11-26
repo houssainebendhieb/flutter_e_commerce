@@ -14,6 +14,7 @@ import 'package:flutter_e_commerce/domain/auth/usecases/signup.dart';
 import 'package:flutter_e_commerce/domain/category/repository/category_repo.dart';
 import 'package:flutter_e_commerce/domain/category/usecases/get_category.dart';
 import 'package:flutter_e_commerce/domain/product/repository/product_repo.dart';
+import 'package:flutter_e_commerce/domain/product/usecase/get_news_product.dart';
 import 'package:flutter_e_commerce/domain/product/usecase/get_product.dart';
 import 'package:get_it/get_it.dart';
 
@@ -45,6 +46,8 @@ Future<void> initializeDependencies() async {
   sl.registerSingleton<GetUseUseCase>(GetUseUseCase());
 
   sl.registerSingleton<GetProduct>(GetProduct());
+
+  sl.registerSingleton<GetNewsProduct>(GetNewsProduct());
 
   sl.registerSingleton<SendForgetPasswordUseCase>(SendForgetPasswordUseCase());
 }

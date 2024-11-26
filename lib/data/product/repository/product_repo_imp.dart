@@ -6,7 +6,12 @@ import 'package:flutter_e_commerce/service_locator.dart';
 
 class ProductRepoImpl extends ProductRepo {
   @override
-  Future<Either<String,List<ProductEntity>>> getProducts() async {
+  Future<Either<String, List<ProductEntity>>> getProducts() async {
     return await sl<ProductFirebaseService>().getProduts();
+  }
+
+  @override
+  Future<Either<String, List<ProductEntity>>> getNewsProducts() async {
+    return await sl<ProductFirebaseService>().getNewsProduts();
   }
 }
