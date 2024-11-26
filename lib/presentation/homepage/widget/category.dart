@@ -19,7 +19,7 @@ class Category extends StatelessWidget {
             );
           } else if (state is CategorySucces) {
             return Container(
-              height: 150,
+              height: 100,
               child: ListView.separated(
                   separatorBuilder: ((context, index) => const SizedBox(
                         width: 15,
