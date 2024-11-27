@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_e_commerce/domain/product/entity/product.dart';
 
-class CustomProductTopSelling extends StatelessWidget {
+class CustomProduct extends StatelessWidget {
   final ProductEntity productEntity;
-  const CustomProductTopSelling({
+  const CustomProduct({
     required this.productEntity,
     super.key,
   });

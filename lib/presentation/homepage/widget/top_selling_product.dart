@@ -31,7 +31,7 @@ class TopSellingProduct extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: 4,
                     itemBuilder: (context, index) {
-                      return CustomProductTopSelling(
+                      return CustomProduct(
                           productEntity: state.list[0]);
                     }));
           }

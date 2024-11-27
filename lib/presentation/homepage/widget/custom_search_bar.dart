@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_e_commerce/common/cubit/product/product_cubit.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
@@ -8,6 +10,7 @@ class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: context.read<ProductCubit>().searchController,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),
         enabledBorder:

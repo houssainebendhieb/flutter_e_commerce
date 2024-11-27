@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_e_commerce/presentation/homepage/cubit/new_product/new_product_cubit.dart';
 import 'package:flutter_e_commerce/common/widgets/custom_product_top_selling.dart';
+import 'package:flutter_e_commerce/presentation/homepage/cubit/new_product/new_product_cubit.dart';
 
 class NewsProduct extends StatelessWidget {
   const NewsProduct({
@@ -31,7 +31,7 @@ class NewsProduct extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: 4,
                     itemBuilder: (context, index) {
-                      return CustomProductTopSelling(
+                      return CustomProduct(
                           productEntity: state.list[0]);
                     }));
           }

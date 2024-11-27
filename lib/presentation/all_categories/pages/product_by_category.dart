@@ -46,7 +46,7 @@ class ProductByCategory extends StatelessWidget {
                                     crossAxisCount: 2),
                             itemCount: state.list.length,
                             itemBuilder: (context, index) {
-                              return CustomProductTopSelling(
+                              return CustomProduct(
                                   productEntity: state.list[0]);
                             }),
                       )
