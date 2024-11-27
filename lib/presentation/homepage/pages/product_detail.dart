@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_e_commerce/common/widgets/custom_button.dart';
 import 'package:flutter_e_commerce/common/widgets/helpers/app_bottomsheet.dart';
 import 'package:flutter_e_commerce/core/configs/theme/app_colors.dart';
 import 'package:flutter_e_commerce/domain/product/entity/product.dart';
@@ -18,179 +19,204 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const header(),
-              const SizedBox(
-                height: 20,
-              ),
-              imagesDisplay(productEntity: widget.productEntity),
-              const SizedBox(
-                height: 25,
-              ),
-              descriptionProduct(productEntity: widget.productEntity),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                  height: 65,
-                  decoration: BoxDecoration(
-                      color: AppColors.secondBackground,
-                      borderRadius: BorderRadius.circular(50)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Size",
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Row(
+          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+          child: Stack(children: [
+            SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  const header(),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  imagesDisplay(productEntity: widget.productEntity),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  descriptionProduct(productEntity: widget.productEntity),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                      height: 65,
+                      decoration: BoxDecoration(
+                          color: AppColors.secondBackground,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(size),
-                            const SizedBox(
-                              width: 15,
+                            const Text(
+                              "Size",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400),
                             ),
-                            IconButton(
-                                onPressed: () {
-                                  List<String> sizes = ["S", "M", "L", "XL"];
-                                  AppBottomsheet.display(
-                                      context,
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
+                            Row(
+                              children: [
+                                Text(size),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                IconButton(
+                                    onPressed: () {
+                                      List<String> sizes = [
+                                        "S",
+                                        "M",
+                                        "L",
+                                        "XL"
+                                      ];
+                                      AppBottomsheet.display(
+                                          context,
+                                          SizedBox(
+                                            height: MediaQuery.sizeOf(context)
+                                                    .height *
                                                 0.3,
-                                        child: ListView(
-                                          children: sizes
-                                              .map((e) => InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        size = e;
-                                                      });
-                                                      Navigator.pop(context);
-                                                    },
-                                                    child: Padding(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          vertical: 5),
-                                                      child: Container(
-                                                          height: 40,
-                                                          decoration: BoxDecoration(
-                                                              color: AppColors
-                                                                  .secondBackground,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          20)),
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
+                                            child: ListView(
+                                              children: sizes
+                                                  .map((e) => InkWell(
+                                                        onTap: () {
+                                                          setState(() {
+                                                            size = e;
+                                                          });
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  vertical: 5),
+                                                          child: Container(
+                                                              height: 40,
+                                                              decoration: BoxDecoration(
+                                                                  color: AppColors
+                                                                      .secondBackground,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20)),
+                                                              child: Padding(
+                                                                padding: const EdgeInsets
                                                                     .symmetric(
                                                                     horizontal:
                                                                         25),
-                                                            child: Row(
-                                                              children: [
-                                                                const Text(
-                                                                    "Size :"),
-                                                                Text(e),
-                                                              ],
-                                                            ),
-                                                          )),
-                                                    ),
-                                                  ))
-                                              .toList(),
-                                        ),
-                                      ));
-                                },
-                                icon:
-                                    const Icon(Icons.keyboard_arrow_down_sharp))
+                                                                child: Row(
+                                                                  children: [
+                                                                    const Text(
+                                                                        "Size :"),
+                                                                    Text(e),
+                                                                  ],
+                                                                ),
+                                                              )),
+                                                        ),
+                                                      ))
+                                                  .toList(),
+                                            ),
+                                          ));
+                                    },
+                                    icon: const Icon(
+                                        Icons.keyboard_arrow_down_sharp))
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
-                  )),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                  height: 65,
-                  decoration: BoxDecoration(
-                      color: AppColors.secondBackground,
-                      borderRadius: BorderRadius.circular(50)),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Quantity",
-                          style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        Row(
+                      )),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                      height: 65,
+                      decoration: BoxDecoration(
+                          color: AppColors.secondBackground,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  count++;
-                                });
-                              },
-                              child: Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: const Center(
-                                    child: Text("+",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20)),
-                                  )),
+                            const Text(
+                              "Quantity",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400),
                             ),
-                            const SizedBox(
-                              width: 25,
-                            ),
-                            Text(count.toString(),
-                                style: const TextStyle(
-                                    color: Colors.white, fontSize: 25)),
-                            const SizedBox(
-                              width: 25,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                setState(() {
-                                  if (count > 0) {
-                                    count--;
-                                  }
-                                });
-                              },
-                              child: Container(
-                                  height: 30,
-                                  width: 30,
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: const Center(
-                                    child: Text("-",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20)),
-                                  )),
+                            Row(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      count++;
+                                    });
+                                  },
+                                  child: Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                          color: Colors.blue,
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      child: const Center(
+                                        child: Text("+",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20)),
+                                      )),
+                                ),
+                                const SizedBox(
+                                  width: 25,
+                                ),
+                                Text(count.toString(),
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 25)),
+                                const SizedBox(
+                                  width: 25,
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      if (count > 0) {
+                                        count--;
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                          color: Colors.blue,
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      child: const Center(
+                                        child: Text("-",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20)),
+                                      )),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ))
-            ],
-          )),
+                      )),
+                  const SizedBox(
+                    height: 80,
+                  )
+                ],
+              ),
+            ),
+            Positioned(
+                bottom: 10,
+                left: 0,
+                right: 0,
+                child: CustomButton(text: "Add To Cart", ontap: () {})),
+          ])),
     );
   }
 }
@@ -265,24 +291,34 @@ class header extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-            decoration: BoxDecoration(
-                color: AppColors.secondBackground,
-                borderRadius: BorderRadius.circular(100)),
-            height: 50,
-            width: 50,
-            child: const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
-                child: Icon(Icons.arrow_back_ios))),
-        Container(
-            decoration: BoxDecoration(
-                color: AppColors.secondBackground,
-                borderRadius: BorderRadius.circular(100)),
-            height: 50,
-            width: 50,
-            child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 5),
-                child: Icon(Icons.favorite_border))),
+        InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Container(
+              decoration: BoxDecoration(
+                  color: AppColors.secondBackground,
+                  borderRadius: BorderRadius.circular(100)),
+              height: 50,
+              width: 50,
+              child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
+                  child: Icon(Icons.arrow_back_ios))),
+        ),
+        InkWell(
+          onTap: () {
+            //
+          },
+          child: Container(
+              decoration: BoxDecoration(
+                  color: AppColors.secondBackground,
+                  borderRadius: BorderRadius.circular(100)),
+              height: 50,
+              width: 50,
+              child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5),
+                  child: Icon(Icons.favorite_border))),
+        ),
       ],
     );
   }
