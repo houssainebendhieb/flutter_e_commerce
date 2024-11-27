@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_e_commerce/common/cubit/product/product_cubit.dart';
 import 'package:flutter_e_commerce/common/widgets/custom_product_top_selling.dart';
+import 'package:flutter_e_commerce/common/widgets/helpers/app_navigator.dart';
+import 'package:flutter_e_commerce/presentation/homepage/pages/product_detail.dart';
 
 class TopSellingProduct extends StatelessWidget {
   const TopSellingProduct({
@@ -31,8 +33,15 @@ class TopSellingProduct extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: 4,
                     itemBuilder: (context, index) {
-                      return CustomProduct(
-                          productEntity: state.list[0]);
+                      return InkWell(
+                        onTap: () {
+                          AppNavigator.push(
+                              context,
+                              ProductDetailScreen(
+                                  productEntity: state.list[0]));
+                        },
+                        child: CustomProduct(productEntity: state.list[0]),
+                      );
                     }));
           }
           return const Text("not found 404");

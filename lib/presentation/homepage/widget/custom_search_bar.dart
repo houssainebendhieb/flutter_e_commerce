@@ -10,6 +10,9 @@ class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (value) {
+        context.read<ProductCubit>().filter(value);
+      },
       controller: context.read<ProductCubit>().searchController,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(25)),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_e_commerce/common/cubit/product/product_cubit.dart';
 import 'package:flutter_e_commerce/common/widgets/custom_product_top_selling.dart';
 import 'package:flutter_e_commerce/domain/product/entity/product.dart';
+import 'package:flutter_e_commerce/presentation/homepage/widget/custom_search_bar.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -34,13 +35,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
                 child: Column(
                   children: [
-                    TextField(
-                        onChanged: (value) {
-                          context.read<ProductCubit>().filter(value);
-                        },
-                        controller:
-                            context.read<ProductCubit>().searchController),
-                    /*const CustomSearchBar()*/
+               
+                    const CustomSearchBar(),
                     Expanded(
                       child: GridView.builder(
                           gridDelegate:
