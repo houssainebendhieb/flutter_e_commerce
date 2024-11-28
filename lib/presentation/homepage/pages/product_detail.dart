@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_e_commerce/common/widgets/custom_button.dart';
 import 'package:flutter_e_commerce/common/widgets/helpers/app_bottomsheet.dart';
+import 'package:flutter_e_commerce/core/configs/styles/text_styles.dart';
 import 'package:flutter_e_commerce/core/configs/theme/app_colors.dart';
 import 'package:flutter_e_commerce/domain/product/entity/product.dart';
+import 'package:flutter_e_commerce/presentation/homepage/widget/appbar.dart';
+import 'package:flutter_e_commerce/presentation/homepage/widget/image_display.dart';
+import 'package:flutter_e_commerce/presentation/homepage/widget/product_description.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductEntity productEntity;
@@ -14,7 +17,9 @@ class ProductDetailScreen extends StatefulWidget {
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
   int count = 0;
+  int indexColor = 0;
   String size = "S";
+  Color productColor = Colors.white;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,12 +55,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text(
+                            Text(
                               "Size",
-                              style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400),
+                              style: TextStyles.fontSize25,
                             ),
                             Row(
                               children: [
@@ -193,15 +195,138 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                           color: Colors.blue,
                                           borderRadius:
                                               BorderRadius.circular(100)),
-                                      child: const Center(
+                                      child: Center(
                                         child: Text("-",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 20)),
+                                            style: TextStyles.fontSize25),
                                       )),
                                 ),
                               ],
                             ),
+                          ],
+                        ),
+                      )),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Container(
+                      height: 65,
+                      decoration: BoxDecoration(
+                          color: AppColors.secondBackground,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "Color",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                List<MapEntry<String, Color>> colors = [];
+                                colors.add(
+                                    const MapEntry("orange", Colors.orange));
+                                colors
+                                    .add(const MapEntry("black", Colors.black));
+                                colors.add(const MapEntry("blue", Colors.blue));
+                                colors
+                                    .add(const MapEntry("white", Colors.white));
+                                AppBottomsheet.display(
+                                    context,
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.sizeOf(context).height *
+                                              0.3,
+                                      child: ListView.builder(
+                                        itemCount: colors.length,
+                                        itemBuilder: (context, index) {
+                                          return InkWell(
+                                            onTap: () {
+                                              setState(() {
+                                                indexColor = index;
+                                                productColor =
+                                                    colors[index].value;
+                                              });
+                                              Navigator.pop(context);
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10),
+                                              child: Container(
+                                                height: 50,
+                                                decoration: BoxDecoration(
+                                                    color: indexColor != index
+                                                        ? AppColors
+                                                            .secondBackground
+                                                        : Colors.blue[400],
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25)),
+                                                child: Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      horizontal: 15),
+                                                  child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text(colors[index].key,
+                                                            style: TextStyles
+                                                                .fontSize25
+                                                                .copyWith(
+                                                                    fontSize:
+                                                                        18)),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              height: 25,
+                                                              width: 25,
+                                                              decoration: BoxDecoration(
+                                                                  color: colors[
+                                                                          index]
+                                                                      .value,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              100)),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 30,
+                                                            ),
+                                                            indexColor == index
+                                                                ? const Icon(
+                                                                    Icons.check,
+                                                                    color: Colors
+                                                                        .white)
+                                                                : const SizedBox(
+                                                                    width: 10,
+                                                                  )
+                                                          ],
+                                                        )
+                                                      ]),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ));
+                              },
+                              child: Container(
+                                height: 25,
+                                width: 25,
+                                decoration: BoxDecoration(
+                                    color: productColor,
+                                    borderRadius: BorderRadius.circular(100)),
+                              ),
+                            )
                           ],
                         ),
                       )),
@@ -215,111 +340,26 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 bottom: 10,
                 left: 0,
                 right: 0,
-                child: CustomButton(text: "Add To Cart", ontap: () {})),
+                child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Colors.blue,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("${widget.productEntity.price * count}\$",
+                              style: TextStyles.fontSize25),
+                          Text("Add To Cart",
+                              style:
+                                  TextStyles.fontSize25.copyWith(fontSize: 15))
+                        ],
+                      ),
+                    ))),
           ])),
-    );
-  }
-}
-
-class descriptionProduct extends StatelessWidget {
-  const descriptionProduct({
-    super.key,
-    required this.productEntity,
-  });
-
-  final ProductEntity productEntity;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(productEntity.title,
-            style: const TextStyle(color: Colors.white, fontSize: 22)),
-        const SizedBox(
-          height: 10,
-        ),
-        Text("\$${productEntity.price}",
-            style: const TextStyle(
-                color: Colors.blue, fontSize: 20, fontWeight: FontWeight.bold)),
-      ],
-    );
-  }
-}
-
-class imagesDisplay extends StatelessWidget {
-  const imagesDisplay({
-    super.key,
-    required this.productEntity,
-  });
-
-  final ProductEntity productEntity;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 250,
-      child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemCount: productEntity.images.length * 3,
-          separatorBuilder: (context, index) {
-            return const SizedBox(
-              width: 10,
-            );
-          },
-          itemBuilder: (context, index) {
-            return Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(productEntity.images[0]))),
-              height: 280,
-              width: 140,
-            );
-          }),
-    );
-  }
-}
-
-class header extends StatelessWidget {
-  const header({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.secondBackground,
-                  borderRadius: BorderRadius.circular(100)),
-              height: 50,
-              width: 50,
-              child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 17, vertical: 15),
-                  child: Icon(Icons.arrow_back_ios))),
-        ),
-        InkWell(
-          onTap: () {
-            //
-          },
-          child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.secondBackground,
-                  borderRadius: BorderRadius.circular(100)),
-              height: 50,
-              width: 50,
-              child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
-                  child: Icon(Icons.favorite_border))),
-        ),
-      ],
     );
   }
 }
